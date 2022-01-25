@@ -53,3 +53,23 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid user data");
   }
 });
+// @desc Get user profile
+// @route GET /api/users/profile
+// @access Private
+
+export const getUserProfile = asyncHandler(async (req, res) => {
+  console.log(req.user)
+  const useExists = await User.findById(req.user._id);
+
+  if (useExists) {
+    res.json({
+      _id: useExists._id,
+      name: useExists.name,
+      email: useExists.email,
+      isAdmin: useExists.isAdmin,
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid user");
+  }
+});
