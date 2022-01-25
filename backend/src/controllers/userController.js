@@ -58,7 +58,6 @@ export const registerUser = asyncHandler(async (req, res) => {
 // @access Private
 
 export const getUserProfile = asyncHandler(async (req, res) => {
-  console.log(req.user)
   const useExists = await User.findById(req.user._id);
 
   if (useExists) {
@@ -69,7 +68,33 @@ export const getUserProfile = asyncHandler(async (req, res) => {
       isAdmin: useExists.isAdmin,
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user");
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+// @desc Update user profile
+// @route PUT /api/users/profile
+// @access Private
+
+export const updateUserProfile = asyncHandler(async (req, res) => {
+  const useExists = await User.findById(req.user._id);
+  const { name, email, password } = req.body;
+  if (useExists) {
+    useExists.name = req.body.name || useExists.name;
+    useExists.email = req.body.email || useExists.email;
+    useExists.password = req.body.password || useExists.password;
+
+    useExists.save();
+    res.json({
+      _id: useExists._id,
+      name: useExists.name,
+      email: useExists.email,
+      isAdmin: useExists.isAdmin,
+      token: useExists.token,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
   }
 });
