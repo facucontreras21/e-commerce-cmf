@@ -58,8 +58,9 @@ export const registerUser = asyncHandler(async (req, res) => {
 // @access Private
 
 export const getUserProfile = asyncHandler(async (req, res) => {
-  console.log(req.user)
+  console.log(req.user);
   const useExists = await User.findById(req.user._id);
+  //const useExists = await User.findById("61f0080cbe6325fe2784cac8");
 
   if (useExists) {
     res.json({
