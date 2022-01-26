@@ -30,5 +30,3 @@ export const admin = (req, res, next) => {
   if (req.user.isAdmin) return next();
   else return res.status(401).json({ message: "Not authorized as an Admin" });
 };
-
-//esta linea a eliminar
