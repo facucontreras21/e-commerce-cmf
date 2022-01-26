@@ -30,8 +30,8 @@ export const authUser = asyncHandler(async (req, res) => {
 // @access Public
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-  const useExists = await User.findOne({ email });
-  if (useExists) {
+  const userExists = await User.findOne({ email });
+  if (userExists) {
     res.status(400);
     throw new Error("User already exists");
   }
@@ -58,13 +58,13 @@ export const registerUser = asyncHandler(async (req, res) => {
 // @route GET /api/users/profile
 // @access Private
 export const getUserProfile = asyncHandler(async (req, res) => {
-  const useExists = await User.findById(req.user._id);
-  if (useExists) {
+  const userExists = await User.findById(req.user._id);
+  if (userExists) {
     res.json({
-      _id: useExists._id,
-      name: useExists.name,
-      email: useExists.email,
-      isAdmin: useExists.isAdmin,
+      _id: userExists._id,
+      name: userExists.name,
+      email: userExists.email,
+      isAdmin: userExists.isAdmin,
     });
   } else {
     res.status(404);
@@ -76,20 +76,19 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 // @route PUT /api/users/profile
 // @access Private
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  const useExists = await User.findById(req.user._id);
-  const { name, email, password } = req.body;
-  if (useExists) {
-    useExists.name = req.body.name || useExists.name;
-    useExists.email = req.body.email || useExists.email;
-    useExists.password = req.body.password || useExists.password;
+  const userExists = await User.findById(req.user._id);
+  if (userExists) {
+    userExists.name = req.body.name || userExists.name;
+    userExists.email = req.body.email || userExists.email;
+    userExists.password = req.body.password || userExists.password;
 
-    useExists.save();
+    userExists.save();
     res.json({
-      _id: useExists._id,
-      name: useExists.name,
-      email: useExists.email,
-      isAdmin: useExists.isAdmin,
-      token: useExists.token,
+      _id: userExists._id,
+      name: userExists.name,
+      email: userExists.email,
+      isAdmin: userExists.isAdmin,
+      token: userExists.token,
     });
   } else {
     res.status(404);
@@ -99,5 +98,49 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
 export const getUsers = asyncHandler(async (req, res) => {
   const users = await User.find().select("-password");
-  res.json(users)
+  res.json(users);
+});
+
+export const deleteUser = asyncHandler(async (req, res) => {
+  const userExists = await User.findById(req.params.id);
+  if (userExists) {
+    const result = await User.remove({ _id: userExists._id });
+    res.json({ message: "User removed" });
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+});
+
+export const getUserById = asyncHandler(async (req, res) => {
+  const userExists = await User.findById(req.params.id).select("-password");
+  if (userExists)
+    return res.json({
+      _id: userExists._id,
+      name: userExists.name,
+      email: userExists.email,
+      isAdmin: userExists.isAdmin,
+      token: userExists.token,
+    });
+  else return res.status(404).json({ message: "User not found" });
+});
+
+export const updateUser = asyncHandler(async (req, res) => {
+  const userExists = await User.findById(req.params.id).select("-password");
+  const { name, email, password, isAdmin } = req.body;
+
+  if (userExists) {
+    userExists.name = name || userExists.name;
+    userExists.email = email || userExists.email;
+    userExists.password = password || userExists.password;
+    userExists.password = isAdmin || userExists.isAdmin;
+
+    userExists.save();
+
+    res.json({
+      _id: userExists._id,
+      name: userExists.name,
+      email: userExists.email,
+      isAdmin: userExists.isAdmin,
+    });
+  } else return res.status(404).json({ message: "User not found" });
 });
