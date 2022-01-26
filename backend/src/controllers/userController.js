@@ -104,7 +104,7 @@ export const getUsers = asyncHandler(async (req, res) => {
 export const deleteUser = asyncHandler(async (req, res) => {
   const userExists = await User.findById(req.params.id);
   if (userExists) {
-    const result = await User.remove({ _id: userExists._id });
+    const result = await User.remove({ _id: userExists._id }); //duda - consultar
     res.json({ message: "User removed" });
   } else {
     res.status(404).json({ message: "User not found" });
@@ -114,14 +114,14 @@ export const deleteUser = asyncHandler(async (req, res) => {
 export const getUserById = asyncHandler(async (req, res) => {
   const userExists = await User.findById(req.params.id).select("-password");
   if (userExists)
-    return res.json({
+    res.json({
       _id: userExists._id,
       name: userExists.name,
       email: userExists.email,
       isAdmin: userExists.isAdmin,
       token: userExists.token,
     });
-  else return res.status(404).json({ message: "User not found" });
+  else res.status(404).json({ message: "User not found" });
 });
 
 export const updateUser = asyncHandler(async (req, res) => {
