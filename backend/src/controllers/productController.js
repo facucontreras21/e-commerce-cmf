@@ -22,7 +22,7 @@ export const getProducts = asyncHandler(async (req, res) => {
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
-  return res.json({ products, page, pages: matchMedia.cell(count / pageSize) });
+  return res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc Fetch single product
@@ -50,6 +50,7 @@ export const createProduct = asyncHandler(async (req, res) => {
     description: "Sample description",
   });
   const createdProduct = await product.save();
+  res.status(201).json(createdProduct);
 });
 // @desc Update a product
 // @route PUT /api/products/:id
