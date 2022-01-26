@@ -82,7 +82,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     userExists.email = req.body.email || userExists.email;
     userExists.password = req.body.password || userExists.password;
 
-    userExists.save();
+    await userExists.save();
     res.json({
       _id: userExists._id,
       name: userExists.name,
@@ -134,7 +134,7 @@ export const updateUser = asyncHandler(async (req, res) => {
     userExists.password = password || userExists.password;
     userExists.password = isAdmin || userExists.isAdmin;
 
-    userExists.save();
+    await userExists.save();
 
     res.status(200).json({
       _id: userExists._id,
@@ -142,5 +142,5 @@ export const updateUser = asyncHandler(async (req, res) => {
       email: userExists.email,
       isAdmin: userExists.isAdmin,
     });
-  } else return res.status(404).json({ message: "User not found" });
+  } else res.status(404).json({ message: "User not found" });
 });
