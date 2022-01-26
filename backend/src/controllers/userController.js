@@ -132,7 +132,7 @@ export const updateUser = asyncHandler(async (req, res) => {
     userExists.name = name || userExists.name;
     userExists.email = email || userExists.email;
     userExists.password = password || userExists.password;
-    userExists.password = isAdmin || userExists.isAdmin;
+    userExists.isAdmin = isAdmin || userExists.isAdmin;
 
     await userExists.save();
 
