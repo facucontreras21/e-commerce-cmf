@@ -28,12 +28,24 @@ export const getProducts = asyncHandler(async (req, res) => {
 // @desc Fetch single product
 // @route GET/api/products/:id
 // @access Public
-export const getProductsById = asyncHandler(async (req, res) => {});
+export const getProductsById = asyncHandler(async (req, res) => {
+  const productExists = await Product.findById(req.params.id);
+  if (productExists) res.status(200).json({ productExists });
+  else res.status(404).json({ message: "Product not found" });
+});
 
 // @desc Delete single product
 // @route DELETE/api/products/:id
 // @access Private/Admin
-export const deleteProduct = asyncHandler(async (req, res) => {});
+export const deleteProduct = asyncHandler(async (req, res) => {
+  const productExists = await Product.findById(req.params.id);
+  if (productExists) {
+    await Product.deleteOne({ _id: productExists._id });
+    res.status(200).json({ message: "Product removed" });
+  } else {
+    res.status(404).json({ message: "Product not found" });
+  }
+});
 // @desc Create a product
 // @route GET/api/products
 // @access Private/Admin
