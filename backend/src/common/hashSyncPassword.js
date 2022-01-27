@@ -6,9 +6,9 @@ import bcrypt from "bcryptjs";
 //   return await bcrypt.hash(password, salt);
 // });
 
-export const encryptPassword = async (password) => {
-  const salt = await bcrypt.genSalt(10);
-  return await bcrypt.hash(password, salt);
+const encryptPassword = (password) => {
+  const salt = bcrypt.genSaltSync(10);
+  return bcrypt.hashSync(password, salt);
 };
 
-//hola
+export default encryptPassword;
