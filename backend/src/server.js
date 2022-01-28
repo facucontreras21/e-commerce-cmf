@@ -24,16 +24,16 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD");
   return next();
 });
-server.get(config.api.prefix, (req, res) => {
-  res.send("API is running...");
-});
-
 //use routes
 server.use(config.api.prefix, routes);
 
 //Upload folder
 const __dirname = path.resolve();
 server.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+
+server.get(config.api.prefix, (req, res) => {
+  res.send("API is running...");
+});
 
 //middleware
 server.use(notFound);

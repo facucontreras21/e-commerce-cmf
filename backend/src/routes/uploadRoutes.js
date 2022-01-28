@@ -1,8 +1,9 @@
 import { Router } from "express";
-import * as uploadCtrl from "../controllers/uploadController.js";
+import { upload, uploadConfig } from "../controllers/uploadController.js";
 import { protect, admin } from "../middlewares/authMiddleware.js";
+
 const router = Router();
 
-router.use("/",protect,admin, uploadCtrl.upload);
+router.post("/", protect, admin, uploadConfig.single("file"), upload); //subir archivo
 
 export default router;

@@ -3,7 +3,7 @@ import * as productCtrl from "../controllers/productController.js";
 import { protect, admin } from "../middlewares/authMiddleware.js";
 const router = Router();
 
-router.get("/top", productCtrl.getTopProducts); //consultar porque este debe ir arriba ?? consultar
+router.get("/top", productCtrl.getTopProducts);
 router.get("/all-products", productCtrl.getProducts);
 router.post("/", protect, admin, productCtrl.createProduct);
 router.post("/:id/reviews", protect, productCtrl.createProductReview);
