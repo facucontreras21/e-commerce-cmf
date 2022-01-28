@@ -5,6 +5,7 @@ import config from "./config/index.js";
 import routes from "./routes/index.js";
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js";
 import connectDB from "./config/db.js";
+import path from "path";
 
 const server = express();
 
@@ -29,6 +30,10 @@ server.get(config.api.prefix, (req, res) => {
 
 //use routes
 server.use(config.api.prefix, routes);
+
+//Upload folder
+const __dirname = path.resolve();
+server.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 //middleware
 server.use(notFound);
