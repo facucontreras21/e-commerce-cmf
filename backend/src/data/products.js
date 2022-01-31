@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: "iPhone 11 Pro 256GB Memory",
-    image: "/uploads/images/1643485516410-img-code.png",
+    image: "/uploads/images/iphone-12-pro-gold-hero.png",
     description:
       "Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -37,7 +37,7 @@ const products = [
   },
   {
     name: "Sony Playstation 4 Pro White Version",
-    image: "/uploads/ps4.jpg",
+    image: "/uploads/images/ps4.jpg",
     description:
       "The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music",
     brand: "Sony",
@@ -49,7 +49,7 @@ const products = [
   },
   {
     name: "Logitech G-Series Gaming Mouse",
-    image: "/images/logitech_g300s.jpg",
+    image: "uploads/images/logitech_g300s.jpg",
     description:
       "Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience",
     brand: "Logitech",
@@ -61,7 +61,7 @@ const products = [
   },
   {
     name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/abh.jpg",
+    image: "uploads/images/abh.jpg",
     description:
       "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
     brand: "Amazon",
