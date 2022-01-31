@@ -3,7 +3,7 @@ import { BASE_URL_BACK } from "../config";
 
 export const getProducts = async (keyword, pageNumber) => {
   try {
-    const { data } = await axios.get(
+    const { data } = await axios(
       `${BASE_URL_BACK}/products/all-products?keywords=${keyword}&pageNumber=${pageNumber}`
     );
     return data;

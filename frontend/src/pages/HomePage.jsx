@@ -13,14 +13,13 @@ const HomePage = () => {
   const { loading, error, products } = productList;
 
   const params = useParams();
-  const { keyword } = params;
+  const { keyword } = params; 
   const pageNumber = params.pageNumber || 1;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
-  //console.log(products);
   return (
     <>
       <h1>Ultimos Productos</h1>
