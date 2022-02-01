@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -20,9 +20,21 @@ const LoginPage = () => {
     setUser({ ...user, [name]: value });
   };
   const verifyUser = (data) => {
-    //login
     dispatch(loginUser(data));
   };
+
+  const usrl = useSelector((state) => state.userLogged);
+  const { error, usuario } = usrl;// el error esta aca si usamos usrl funciona
+
+  console.log(usrl.user);
+  console.log("Holis");
+  console.log(usuario);
+  useEffect(() => {
+    if (usuario) {
+      console.log(usuario);
+      navigate("/");
+    }
+  }, [usuario]);
   return (
     <>
       <Form
