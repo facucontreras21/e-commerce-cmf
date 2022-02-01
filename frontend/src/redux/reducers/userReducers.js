@@ -7,7 +7,7 @@ export const userLoginReducer = (state = { user: {} }, action) => {
     case actionTypes.USER_LOGIN_SUCCESS:
       return {
         loading: false,
-        user: action.payload,
+        userFound: action.payload,
         // pages: action.payload.pages,
         // page: action.payload.page,
       };

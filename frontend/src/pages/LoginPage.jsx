@@ -24,17 +24,14 @@ const LoginPage = () => {
   };
 
   const usrl = useSelector((state) => state.userLogged);
-  const { error, usuario } = usrl;// el error esta aca si usamos usrl funciona
+  const { loading, userFound } = usrl; 
 
-  console.log(usrl.user);
-  console.log("Holis");
-  console.log(usuario);
   useEffect(() => {
-    if (usuario) {
-      console.log(usuario);
+    if (userFound) {
+      console.log(userFound);
       navigate("/");
     }
-  }, [usuario]);
+  }, [userFound]);
   return (
     <>
       <Form
