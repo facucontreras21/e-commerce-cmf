@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { loginUser } from "../redux/actions/userActions.js";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const initialUserState = {
     email: "",
     password: "",
@@ -18,12 +20,9 @@ const LoginPage = () => {
     setUser({ ...user, [name]: value });
   };
   const verifyUser = (data) => {
+    //login
     dispatch(loginUser(data));
   };
-
-  const userLogged = useSelector((state) => state.userLogged); ///consultar
-  console.log(userLogged);
-
   return (
     <>
       <Form
@@ -58,10 +57,6 @@ const LoginPage = () => {
           Login
         </Button>
       </Form>
-      <div>
-        <h1>Login</h1>
-        <h1>User logueado: {userLogged.user.email}</h1>
-      </div>
     </>
   );
 };

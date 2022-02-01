@@ -10,7 +10,7 @@ export const loginUser = (body) => {
         type: actionTypes.USER_LOGIN_SUCCESS,
         payload: data,
       });
-      // localStorage (aqui se agrega los datos ara poder tenerlos en local porque sino se van a perder)
+      localStorage.setItem("data", JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: actionTypes.USER_LOGIN_FAIL,
