@@ -24,7 +24,7 @@ const LoginPage = () => {
   };
 
   const usrl = useSelector((state) => state.userLogged);
-  const { loading, userFound } = usrl; 
+  const { userFound } = usrl; 
 
   useEffect(() => {
     if (userFound) {
