@@ -24,17 +24,14 @@ export const registerUser = async (name, email, password) => {
   }
 };
 
-export const allUsers = async (token, isAdmin) => {
+export const allUsers = async (token) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const body = {
-      isAdmin,
-    };
     const { data } = await axios.get(
       `${BASE_URL_BACK}/users/all-users`,
-      body,
+      {},
       config
     );
     return data;
@@ -80,13 +77,13 @@ export const modifyUserProfile = async (token, name, email, password) => {
   }
 };
 
-export const deleteUserProfile = async (token) => {
+export const deleteUserProfile = async (token, id) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { data } = await axios.delete(
-      `${BASE_URL_BACK}/users/:id`,
+      `${BASE_URL_BACK}/users/${id}`,
       {},
       config
     );
@@ -102,7 +99,7 @@ export const getUserProfile = async (token) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const { data } = await axios.get(
-      `${BASE_URL_BACK}/users/:id`,
+      `${BASE_URL_BACK}/users/${id}`,
       {},
       config
     );
@@ -112,7 +109,7 @@ export const getUserProfile = async (token) => {
   }
 };
 
-export const putUserProfile = async (token,name,email,password,isAdmin) => {
+export const putUserProfile = async (token, name, email, password, isAdmin) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -121,10 +118,10 @@ export const putUserProfile = async (token,name,email,password,isAdmin) => {
       name,
       email,
       password,
-      isAdmin
+      isAdmin,
     };
     const { data } = await axios.put(
-      `${BASE_URL_BACK}/users/:id`,
+      `${BASE_URL_BACK}/users/${id}`,
       body,
       config
     );
