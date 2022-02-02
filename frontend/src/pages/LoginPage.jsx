@@ -15,6 +15,9 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState(initialUserState);
 
+  const usrl = useSelector((state) => state.userLogged);
+  const { loading, userFound } = usrl;
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
@@ -23,15 +26,12 @@ const LoginPage = () => {
     dispatch(loginUser(data));
   };
 
-  const usrl = useSelector((state) => state.userLogged);
-  const { userFound } = usrl; 
-
   useEffect(() => {
     if (userFound) {
-      console.log(userFound);
       navigate("/");
     }
   }, [userFound]);
+
   return (
     <>
       <Form

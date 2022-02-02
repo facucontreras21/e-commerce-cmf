@@ -4,7 +4,7 @@ import { userLoginReducer } from "./userReducers";
 
 const reducer = combineReducers({
   productList: productListReducer,
-  userLogged: userLoginReducer,
+  userLogged: userLoginReducer, 
 });
 
 export default reducer;
