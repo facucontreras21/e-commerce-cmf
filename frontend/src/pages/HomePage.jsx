@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Carrousel from "../components/Carrousel";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Product from "../components/Product";
@@ -13,7 +14,7 @@ const HomePage = () => {
   const { loading, error, products } = productList;
 
   const params = useParams();
-  const { keyword } = params; 
+  const { keyword } = params;
   const pageNumber = params.pageNumber || 1;
 
   useEffect(() => {
@@ -22,6 +23,8 @@ const HomePage = () => {
 
   return (
     <>
+      <h5>aqui abajo debe estar el carrousel</h5>
+      <Carrousel />
       <h1>Ultimos Productos</h1>
       {loading ? (
         <Loader />

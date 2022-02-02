@@ -17,3 +17,24 @@ export const productListReducer = (state = { products: [] }, action) => {
       return state;
   }
 };
+
+export const productListTopReducer = (
+  state = { productListTop: [] },
+  action
+) => {
+  switch (action.type) {
+    case actionTypes.PRODUCTS_TOP_REQUEST:
+      return { loading: true, productListTop: [] };
+    case actionTypes.PRODUCTS_TOP_SUCCESS:
+      return {
+        loading: false,
+        productListTop: action.payload, //entender esta linea .productListTop,
+        // pages: action.payload.pages,
+        // page: action.payload.page,
+      };
+    case actionTypes.PRODUCTS_TOP_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};

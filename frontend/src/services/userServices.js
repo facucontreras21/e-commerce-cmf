@@ -18,6 +18,7 @@ export const registerUser = async (name, email, password) => {
       password,
     };
     const { data } = await axios.post(`${BASE_URL_BACK}/users/`, body);
+    console.log(data);
     return data;
   } catch (error) {
     throw error;
@@ -93,7 +94,7 @@ export const deleteUserProfile = async (token, id) => {
   }
 };
 
-export const getUserProfile = async (token) => {
+export const getUserProfile = async (token, id) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -109,7 +110,14 @@ export const getUserProfile = async (token) => {
   }
 };
 
-export const putUserProfile = async (token, name, email, password, isAdmin) => {
+export const putUserProfile = async (
+  token,
+  name,
+  email,
+  password,
+  isAdmin,
+  id
+) => {
   try {
     const config = {
       headers: { Authorization: `Bearer ${token}` },

@@ -11,7 +11,8 @@ const Header = () => {
 
   const logout = () => {
     localStorage.removeItem("data");
-    return navigate("/");
+    window.location.href = "/";
+    // return navigate("/");
   };
 
   return (
@@ -29,6 +30,9 @@ const Header = () => {
                   <Nav.Link>
                     <i className="fas fa-shopping-cart"></i>Carrito
                   </Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/register">
+                  <Nav.Link>Sign Up</Nav.Link>
                 </LinkContainer>
                 {!userFound ? (
                   <LinkContainer to="/login">

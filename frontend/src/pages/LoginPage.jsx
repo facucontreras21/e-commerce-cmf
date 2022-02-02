@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [user, setUser] = useState(initialUserState);
 
   const usrl = useSelector((state) => state.userLogged);
-  const { loading, userFound } = usrl;
+  const { userFound } = usrl;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -34,6 +34,7 @@ const LoginPage = () => {
 
   return (
     <>
+    <h3>LOGIN</h3>
       <Form
         onSubmit={(event) => {
           event.preventDefault();
