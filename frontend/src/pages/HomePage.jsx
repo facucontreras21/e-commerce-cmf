@@ -23,7 +23,6 @@ const HomePage = () => {
 
   return (
     <>
-      <h5>aqui abajo debe estar el carrousel</h5>
       <Carrousel />
       <h1>Ultimos Productos</h1>
       {loading ? (

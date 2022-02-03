@@ -16,11 +16,7 @@ const Carrousel = () => {
     <Carousel>
       {productListTop.map((product) => (
         <Carousel.Item interval={1000} key={product._id}>
-          <img
-            className="d-block w-100"
-            src="https://img.global.news.samsung.com/mx/wp-content/uploads/2019/01/Notebook-9-Pro-3.jpg"
-            alt="First slide"
-          />
+          <img className="col-4" src={product.image} />
           <Carousel.Caption>
             <h3>{product.name}</h3>
             <p>{product.description}</p>
