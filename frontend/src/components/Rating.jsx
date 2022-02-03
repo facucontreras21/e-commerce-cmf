@@ -1,7 +1,7 @@
 import React from "react";
 
-const Rating = () => {
-  return <div>completar rating...</div>;
+const Rating = ({ rating }) => {
+  return null;
 };
 
 export default Rating;

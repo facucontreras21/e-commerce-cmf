@@ -37,14 +37,14 @@ export const productListTopReducer = (
   }
 };
 
-export const productByIdReducer = (state = { productbById: {} }, action) => {
+export const productByIdReducer = (state = { productByIdFound: {} }, action) => {
   switch (action.type) {
     case actionTypes.PRODUCTS_TOP_REQUEST:
-      return { loading: true, productbById: {} };
+      return { loading: true, productByIdFound: {} };
     case actionTypes.PRODUCTS_TOP_SUCCESS:
       return {
         loading: false,
-        productbById: action.payload,
+        productByIdFound: action.payload,
       };
 
     case actionTypes.PRODUCTS_TOP_FAIL:
