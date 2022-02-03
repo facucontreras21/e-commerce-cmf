@@ -3,6 +3,7 @@ import {
   getProducts,
   getTopProducts,
   getProductsById,
+  createProductReview,
 } from "../../services/productServices";
 
 /**
@@ -65,6 +66,32 @@ export const productById = (id) => {
       dispatch({
         type: actionTypes.PRODUCTS_TOP_SUCCESS,
         payload: data.productExists,
+      });
+      //console.log(data);
+    } catch (error) {
+      dispatch({
+        type: actionTypes.PRODUCTS_TOP_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+};
+
+/**
+ * Create product review
+ */
+
+export const createProductReviewA = (token, body, id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: actionTypes.PRODUCTS_TOP_REQUEST });
+      const data = await createProductReview(token, body, id); //observacion :: cambiar nombre a "data"
+      dispatch({
+        type: actionTypes.PRODUCTS_TOP_SUCCESS,
+        payload: data,
       });
       //console.log(data);
     } catch (error) {

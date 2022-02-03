@@ -37,7 +37,10 @@ export const productListTopReducer = (
   }
 };
 
-export const productByIdReducer = (state = { productByIdFound: {} }, action) => {
+export const productByIdReducer = (
+  state = { productByIdFound: {} },
+  action
+) => {
   switch (action.type) {
     case actionTypes.PRODUCTS_TOP_REQUEST:
       return { loading: true, productByIdFound: {} };
@@ -45,6 +48,23 @@ export const productByIdReducer = (state = { productByIdFound: {} }, action) => 
       return {
         loading: false,
         productByIdFound: action.payload,
+      };
+
+    case actionTypes.PRODUCTS_TOP_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const createProducReviewR = (state = { mewreview: {} }, action) => {
+  switch (action.type) {
+    case actionTypes.PRODUCTS_TOP_REQUEST:
+      return { loading: true, mewreview: {} };
+    case actionTypes.PRODUCTS_TOP_SUCCESS:
+      return {
+        loading: false,
+        mewreview: action.payload,
       };
 
     case actionTypes.PRODUCTS_TOP_FAIL:
