@@ -53,9 +53,10 @@ export const createProductReview = async (token, body, id) => {
   }
 };
 
-export const getProductsById = async (token, id) => {
+export const getProductsById = async (id) => {
   try {
     const { data } = await axios.get(`${BASE_URL_BACK}/products/${id}`);
+
     return data;
   } catch (error) {
     throw error;

@@ -28,10 +28,25 @@ export const productListTopReducer = (
     case actionTypes.PRODUCTS_TOP_SUCCESS:
       return {
         loading: false,
-        productListTop: action.payload, //entender esta linea .productListTop,
-        // pages: action.payload.pages,
-        // page: action.payload.page,
+        productListTop: action.payload,
       };
+    case actionTypes.PRODUCTS_TOP_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const productByIdReducer = (state = { productFound: {} }, action) => {
+  switch (action.type) {
+    case actionTypes.PRODUCTS_TOP_REQUEST:
+      return { loading: true, productFound: {} };
+    case actionTypes.PRODUCTS_TOP_SUCCESS:
+      return {
+        loading: false,
+        productFound: action.payload,
+      };
+
     case actionTypes.PRODUCTS_TOP_FAIL:
       return { loading: false, error: action.payload };
     default:

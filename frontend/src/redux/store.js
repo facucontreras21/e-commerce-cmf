@@ -7,8 +7,6 @@ const userStorage = localStorage.getItem("data")
   ? JSON.parse(localStorage.getItem("data"))
   : null;
 
-console.log(userStorage);
-
 const initialState = {
   userLogged: { userFound: userStorage },
 };

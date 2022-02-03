@@ -1,5 +1,9 @@
 import actionTypes from "./actionTypes";
-import { getProducts, getTopProducts } from "../../services/productServices";
+import {
+  getProducts,
+  getTopProducts,
+  getProductsById,
+} from "../../services/productServices";
 
 /**
  * Returns a list of all products
@@ -37,6 +41,32 @@ export const listProductsTop = () => {
         type: actionTypes.PRODUCTS_TOP_SUCCESS,
         payload: data,
       });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.PRODUCTS_TOP_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+};
+
+/**
+ * Returns a product
+ */
+
+export const productById = (id) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: actionTypes.PRODUCTS_TOP_REQUEST });
+      const data = await getProductsById(id); //observacion :: cambiar nombre a "data"
+      dispatch({
+        type: actionTypes.PRODUCTS_TOP_SUCCESS,
+        payload: data.productExists,
+      });
+      //console.log(data);
     } catch (error) {
       dispatch({
         type: actionTypes.PRODUCTS_TOP_FAIL,
