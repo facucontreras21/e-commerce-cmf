@@ -8,17 +8,18 @@ const ProductPage = () => {
   const dispatch = useDispatch();
 
   const productFoundById = useSelector((state) => state.productFoundById);
-  const { productFound } = productFoundById;
+  const { productbById } = productFoundById;
   const { id } = useParams();
 
-  console.log(productFoundById);
-  console.log(productFound);
   useEffect(() => {
     dispatch(productById(id));
-  }, [dispatch, id]);
+  }, [dispatch]);
 
-  //   dispatch(productById(id));
-  return <Product roduct={productFound} />;
+  return (
+    <>
+      <Product product={productbById} />
+    </>
+  );
 };
 
 export default ProductPage;
