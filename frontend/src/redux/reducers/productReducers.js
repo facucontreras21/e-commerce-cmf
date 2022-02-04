@@ -57,17 +57,17 @@ export const productByIdReducer = (
   }
 };
 
-export const createProducReviewR = (state = { mewreview: {} }, action) => {
+export const createReviewReducer = (state = { mewreview: {} }, action) => {
   switch (action.type) {
-    case actionTypes.PRODUCTS_TOP_REQUEST:
+    case actionTypes.TYPE_REQUEST:
       return { loading: true, mewreview: {} };
-    case actionTypes.PRODUCTS_TOP_SUCCESS:
+    case actionTypes.TYPE_SUCCESS:
       return {
         loading: false,
         mewreview: action.payload,
       };
 
-    case actionTypes.PRODUCTS_TOP_FAIL:
+    case actionTypes.TYPE_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

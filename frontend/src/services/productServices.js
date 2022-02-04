@@ -47,6 +47,7 @@ export const createProductReview = async (token, body, id) => {
       body,
       config
     );
+    console.log(data);
     return data;
   } catch (error) {
     throw error;

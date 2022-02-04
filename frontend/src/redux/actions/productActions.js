@@ -84,19 +84,19 @@ export const productById = (id) => {
  * Create product review
  */
 
-export const createProductReviewA = (token, body, id) => {
+export const createReviewAction = (token, body, id) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: actionTypes.PRODUCTS_TOP_REQUEST });
-      const data = await createProductReview(token, body, id); //observacion :: cambiar nombre a "data"
+      dispatch({ type: actionTypes.TYPE_REQUEST });
+      const data = await createProductReview(token, body, id);
+      console.log(data);
       dispatch({
-        type: actionTypes.PRODUCTS_TOP_SUCCESS,
+        type: actionTypes.TYPE_SUCCESS,
         payload: data,
       });
-      //console.log(data);
     } catch (error) {
       dispatch({
-        type: actionTypes.PRODUCTS_TOP_FAIL,
+        type: actionTypes.TYPE_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

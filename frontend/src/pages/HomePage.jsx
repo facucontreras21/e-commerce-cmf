@@ -23,14 +23,14 @@ const HomePage = () => {
 
   return (
     <>
-      <Carrousel />
-      <h1>Ultimos Productos</h1>
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Carrousel />
+          <h1>Ultimos Productos</h1>
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>

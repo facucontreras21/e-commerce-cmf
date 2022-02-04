@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { logoutAction } from "../../redux/actions/user/userAuthActions";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const usrl = useSelector((state) => state.userLogged);
-  const { loading, userFound } = usrl;
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useSelector((state) => state.userLogged);
 
   const logout = () => {
-    localStorage.removeItem("data");
-    window.location.href = "/";
-    // return navigate("/");
+    dispatch(logoutAction());
+    window.location.href = "/"; //linea en observacion
   };
 
   return (
@@ -34,14 +33,14 @@ const Header = () => {
                 <LinkContainer to="/register">
                   <Nav.Link>Sign Up</Nav.Link>
                 </LinkContainer>
-                {!userFound ? (
+                {!isLoggedIn ? (
                   <LinkContainer to="/login">
                     <Nav.Link>
                       <i className="fas fa-user"></i>Login
                     </Nav.Link>
                   </LinkContainer>
                 ) : (
-                  <NavDropdown title={userFound.name} id="basic-nav-dropdown">
+                  <NavDropdown title={user.name} id="basic-nav-dropdown">
                     <NavDropdown.Item href="/rutaNoSeUsa">
                       Profile
                     </NavDropdown.Item>

@@ -3,8 +3,8 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from "./reducers";
 
-const userStorage = localStorage.getItem("data")
-  ? JSON.parse(localStorage.getItem("data"))
+const userStorage = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
   : null;
 
 const initialState = {
