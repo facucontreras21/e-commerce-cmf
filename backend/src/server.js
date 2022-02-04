@@ -31,9 +31,18 @@ server.use(config.api.prefix, routes);
 const __dirname = path.resolve();
 server.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-server.get(config.api.prefix, (req, res) => {
-  res.send("API is running...");
-});
+// Frontend production
+if (config.nodeEnv === "production") {
+  server.use(express.static(path.join(__dirname, "frontend/build")));
+  server.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  // API status
+  server.get(config.api.prefix, (req, res) => {
+    res.send("API is running...");
+  });
+}
 
 //middleware
 server.use(notFound);
